@@ -14,11 +14,21 @@ interface CardWrapperProps {
 export const CardWrapper: React.FC<CardWrapperProps> = ({ card, children }) => {
   const { setActiveTagFilter, setHoveredTag, hoveredTag } = useDeck();
   
-  const formattedDate = new Date(card.createdAt).toLocaleDateString(undefined, {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const parseDate = (val: any): Date => {
+    if (!val) return new Date();
+    if (typeof val.toDate === 'function') return val.toDate();
+    if (val.seconds !== undefined) return new Date(val.seconds * 1000);
+    return new Date(val);
+  };
+
+  const dateObj = parseDate(card.createdAt);
+  const formattedDate = isNaN(dateObj.getTime())
+    ? 'Loading date...'
+    : dateObj.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
 
   const isHighlighted = hoveredTag && card.tags.includes(hoveredTag);
 
