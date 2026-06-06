@@ -20,6 +20,7 @@ export const LinkCard: React.FC<Props> = ({ card }) => {
             href={card.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="text-zinc-500 hover:text-zinc-200 transition-colors"
             title="Quick Visit"
           >
@@ -36,6 +37,7 @@ export const LinkCard: React.FC<Props> = ({ card }) => {
           href={card.url} 
           target="_blank" 
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="text-xs text-zinc-500 hover:text-[#9784af] transition-colors ml-6 truncate block mt-1"
         >
           {card.url}
