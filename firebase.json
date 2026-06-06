@@ -12,5 +12,8 @@
         "supportEmail": "rikka0919@gmail.com"
       }
     }
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

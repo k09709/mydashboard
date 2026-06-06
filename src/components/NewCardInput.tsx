@@ -54,12 +54,14 @@ export const NewCardInput: React.FC = () => {
     setIsSubmitting(true);
     try {
       await addCard(cardData, selectedImage ?? undefined);
+      setContent(''); setTitle(''); setUrl(''); setSummary('');
+      setCode(''); setDescription(''); setTagsStr(''); setSelectedImage(null);
+    } catch (err: any) {
+      console.error(err);
+      alert('Failed to save card: ' + err.message);
     } finally {
       setIsSubmitting(false);
     }
-
-    setContent(''); setTitle(''); setUrl(''); setSummary('');
-    setCode(''); setDescription(''); setTagsStr(''); setSelectedImage(null);
   };
 
   const TabButton = ({ type, icon: Icon, label }: { type: CardType, icon: any, label: string }) => (
